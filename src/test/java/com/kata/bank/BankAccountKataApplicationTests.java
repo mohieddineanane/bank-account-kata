@@ -35,7 +35,7 @@ class BankAccountKataApplicationTests {
 		
 		Optional<Account>  account = bankAccountService.getAccountByNum("fr792525234552252");	
 		Double oldBalance = account.get().getTotalBalance();
-		bankAccountService.deposit(600, account);
+		bankAccountService.deposit(500, account);
 		
 		assertEquals(account.get().getTotalBalance(), oldBalance+500);
 
