@@ -44,6 +44,31 @@ public class BankAccountService {
 		return null;
 
 	}
+	
+	public Account withdraw(double amount, Optional<Account> account) {
+
+
+		if (account.isPresent()) {
+			Operation op = new Operation();
+
+			op.setAmount(amount);
+			op.setOperationDate(LocalDateTime.now());
+			op.setType("deposit");
+			op.setAccountNum(account.get().getAccountNum());
+
+			operationRepositoy.save(op);
+
+			account.get().setTotalBalance(account.get().getTotalBalance() - amount);
+
+			accountRepository.save(account.get());
+
+			return account.get();
+		}
+
+		return null;
+
+	}
+
 
 
 	public Optional<Account> getAccountByNum(String accountNum) 
