@@ -21,9 +21,8 @@ public class BankAccountService {
 	@Autowired
 	OperationRepository operationRepositoy;
 
-	public Account deposit(double amount, String accountNum) {
+	public Account deposit(double amount, Optional<Account> account) {
 
-		Optional<Account> account = getAccountByNum(accountNum);
 
 		if (account.isPresent()) {
 			Operation op = new Operation();
@@ -31,7 +30,7 @@ public class BankAccountService {
 			op.setAmount(amount);
 			op.setOperationDate(LocalDateTime.now());
 			op.setType("deposit");
-			op.setAccountNum(accountNum);
+			op.setAccountNum(account.get().getAccountNum());
 
 			operationRepositoy.save(op);
 

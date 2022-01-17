@@ -33,8 +33,11 @@ class BankAccountKataApplicationTests {
 	@Test
 	public void testDepositMoney() {
 		
-		Account  account = bankAccountService.deposit(500, "fr792525234552252");
-		assertNotNull(account.getTotalBalance());
+		Optional<Account>  account = bankAccountService.getAccountByNum("fr792525234552252");	
+		Double oldBalance = account.get().getTotalBalance();
+		bankAccountService.deposit(500, account);
+		
+		assertEquals(account.get().getTotalBalance(), oldBalance+500);
 
 	}
 
