@@ -2,6 +2,7 @@ package com.kata.bank;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
 
@@ -48,7 +49,9 @@ class BankAccountKataApplicationTests {
 		Double oldBalance = account.get().getTotalBalance();
 		bankAccountService.withdraw(2000, account);
 		
-		assertEquals(account.get().getTotalBalance(), oldBalance-500);
+		assertEquals(account.get().getTotalBalance(), oldBalance - 2000);
+		System.out.println(account.get().getTotalBalance());
+		assertTrue(account.get().getTotalBalance()> 0.0);
 
 	}
 

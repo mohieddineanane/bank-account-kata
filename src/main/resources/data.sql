@@ -24,4 +24,4 @@ CREATE TABLE account (
 INSERT INTO customer (customer_id, firstname, lastname, address, phone, country,zip, city, civility) 
 VALUES (1, 'firstname','lastname', '40 rue de la gare', '0658568565','France','78260','Acheres', 'Mr' );
 
-INSERT INTO account (account_id, account_num, total, activation_date, status, customer_id) VALUES (1, 'fr792525234552252',15000.55, '2012-10-02','',1);
+INSERT INTO account (account_id, account_num, total, activation_date, status, customer_id) VALUES (1, 'fr792525234552252',1500.55, '2012-10-02','',1);
