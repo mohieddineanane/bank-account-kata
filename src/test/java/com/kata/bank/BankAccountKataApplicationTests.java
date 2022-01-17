@@ -23,7 +23,7 @@ class BankAccountKataApplicationTests {
 	public void testGetAccountByNum() {
 		
 		Account  account = bankAccountService.getAccountByNum("fr792525234552252");	
-		assertEquals("fr792525234552252", account.getAccountNum());
+		assertEquals("be792525234552252", account.getAccountNum());
 
 	}
 
