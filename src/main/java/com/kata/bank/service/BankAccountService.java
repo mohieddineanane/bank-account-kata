@@ -10,6 +10,7 @@ import com.kata.bank.data.Account;
 import com.kata.bank.data.Operation;
 import com.kata.bank.repository.AccountRepository;
 import com.kata.bank.repository.OperationRepository;
+import com.sun.tools.sjavac.Log;
 
 @Service
 public class BankAccountService {
@@ -45,12 +46,15 @@ public class BankAccountService {
 
 	}
 	
-	public Account withdraw(double amount, Optional<Account> account) {
+	public Account withdraw(double amount, Optional<Account> account) throws Exception {
 
 
 		if (account.isPresent()) {
+			
+			if(account.get().getTotalBalance() > amount)
+			{
+			
 			Operation op = new Operation();
-
 			op.setAmount(amount);
 			op.setOperationDate(LocalDateTime.now());
 			op.setType("deposit");
@@ -61,6 +65,10 @@ public class BankAccountService {
 			account.get().setTotalBalance(account.get().getTotalBalance() - amount);
 
 			accountRepository.save(account.get());
+			}
+			else {
+				throw new Exception("account funds not sufficient");
+			}
 
 			return account.get();
 		}

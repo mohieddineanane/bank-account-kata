@@ -1,7 +1,6 @@
 package com.kata.bank;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Optional;
@@ -13,7 +12,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.kata.bank.data.Account;
 import com.kata.bank.service.BankAccountService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @SpringBootTest
+@Slf4j
 class BankAccountKataApplicationTests {
 
 	@Autowired
@@ -47,10 +49,13 @@ class BankAccountKataApplicationTests {
 		
 		Optional<Account>  account = bankAccountService.getAccountByNum("fr792525234552252");	
 		Double oldBalance = account.get().getTotalBalance();
-		bankAccountService.withdraw(2000, account);
+		try {
+			bankAccountService.withdraw(2000, account);
+			assertEquals(account.get().getTotalBalance(), oldBalance - 2000);
+		} catch (Exception e) {
+			log.error(e.getMessage());;
+		}
 		
-		assertEquals(account.get().getTotalBalance(), oldBalance - 2000);
-		System.out.println(account.get().getTotalBalance());
 		assertTrue(account.get().getTotalBalance()> 0.0);
 
 	}
