@@ -46,7 +46,7 @@ class BankAccountKataApplicationTests {
 		
 		Optional<Account>  account = bankAccountService.getAccountByNum("fr792525234552252");	
 		Double oldBalance = account.get().getTotalBalance();
-		bankAccountService.withdraw(500, account);
+		bankAccountService.withdraw(2000, account);
 		
 		assertEquals(account.get().getTotalBalance(), oldBalance-500);
 
