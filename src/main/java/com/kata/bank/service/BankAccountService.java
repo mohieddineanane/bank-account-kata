@@ -1,6 +1,7 @@
 package com.kata.bank.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class BankAccountService {
 			Operation op = new Operation();
 			op.setAmount(amount);
 			op.setOperationDate(LocalDateTime.now());
-			op.setType("deposit");
+			op.setType("withdraw");
 			op.setAccountNum(account.get().getAccountNum());
 
 			operationRepositoy.save(op);
@@ -75,6 +76,13 @@ public class BankAccountService {
 
 		return null;
 
+	}
+	
+	public List<Operation> history(String accountNum) {
+
+		 List<Operation> operations = operationRepositoy.findByAccountNum(accountNum);
+		
+		 return operations;
 	}
 
 
