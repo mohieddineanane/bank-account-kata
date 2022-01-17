@@ -15,7 +15,7 @@ public class BankAccountService {
 	AccountRepository accountRepository;
 
 
-	public Account getAccount(String accountNum) 
+	public Account getAccountByNum(String accountNum) 
 	{
 		Optional<Account> account = accountRepository.findByAccountNum(accountNum);
 		return account.get();

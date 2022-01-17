@@ -20,10 +20,9 @@ class BankAccountKataApplicationTests {
 	}
 	
 	@Test
-	public void testGetAccount() {
+	public void testGetAccountByNum() {
 		
-		Account  account = bankAccountService.getAccount("fr792525234552252");
-		
+		Account  account = bankAccountService.getAccountByNum("fr792525234552252");	
 		assertEquals("fr792525234552252", account.getAccountNum());
 
 	}
